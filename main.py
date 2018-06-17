@@ -77,7 +77,7 @@ while True:
 csvHeader = ['5 Minutes','Lane 1 Flow (Veh/5 Minutes)','Lane Points','% Observed']
 tempData = []
 tempData.append(csvHeader)
-tryString = '5 Minutes,Lane 1 Flow (Veh/5 Minutes),Lane Points,% Observed\n'
+
 # to be process for parsing
 for count in range(len(mmdaTrafficFiles)):
     with open('./mmda-traffic-scrapped/out/'+mmdaTrafficFiles[count],"r") as f:
@@ -88,6 +88,4 @@ for count in range(len(mmdaTrafficFiles)):
             else:
                 print('json object is empty')
 
-print(type(tempData))
-print(tempData)
 saveCsvFile.saveFile(tempData,northOrSouth,finalListAddress[roadChoice-1].replace(' ','_').replace('.','').lower())
