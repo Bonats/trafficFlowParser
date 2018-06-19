@@ -8,3 +8,10 @@ def saveFile(finalMainAnswer,direction,streetName):
     with myFile:
         writer = csv.writer(myFile,sys.stdout, lineterminator='\n')
         writer.writerows(finalMainAnswer)
+
+def saveDataSet(fileName,finalMainAnswer):
+
+    myFile = open(fileName+'.csv', 'w')
+    with myFile:
+        writer = csv.writer(myFile,sys.stdout, lineterminator='\n')
+        writer.writerows(finalMainAnswer)
