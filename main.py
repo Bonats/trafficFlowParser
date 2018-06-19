@@ -76,7 +76,10 @@ while True:
 
 csvHeader = ['5 Minutes','Lane 1 Flow (Veh/5 Minutes)','Lane Points','% Observed']
 tempData = []
-tempData.append(csvHeader)
+dataSetTrain = []
+dataSetTest = []
+dataSetTrain.append(csvHeader)
+dataSetTest.append(csvHeader)
 
 # to be process for parsing
 for count in range(len(mmdaTrafficFiles)):
@@ -88,4 +91,19 @@ for count in range(len(mmdaTrafficFiles)):
             else:
                 print('json object is empty')
 
-saveCsvFile.saveFile(tempData,northOrSouth,finalListAddress[roadChoice-1].replace(' ','_').replace('.','').lower())
+import math
+
+halfData = math.floor(len(tempData)/2)
+print(len(tempData))
+print(halfData)
+
+for data in range(len(tempData)):
+    if data < halfData:
+        dataSetTrain.append(tempData[data])
+    else:
+        dataSetTest.append(tempData[data])
+
+
+# saveCsvFile.saveFile(tempData,northOrSouth,finalListAddress[roadChoice-1].replace(' ','_').replace('.','').lower())
+saveCsvFile.saveDataSet('train',dataSetTrain)
+saveCsvFile.saveDataSet('test',dataSetTest)
